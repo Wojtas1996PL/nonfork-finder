@@ -14,4 +14,11 @@ public class GlobalExceptionHandler {
                 .status(HttpStatus.INTERNAL_SERVER_ERROR)
                 .body(exception.getMessage());
     }
+
+    @ExceptionHandler({EmptyGitHubResponseException.class})
+    public ResponseEntity<Object> handleEmptyGitHubResponseException(EmptyGitHubResponseException exception) {
+        return ResponseEntity
+                .status(HttpStatus.INTERNAL_SERVER_ERROR)
+                .body(exception.getMessage());
+    }
 }

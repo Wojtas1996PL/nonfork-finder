@@ -1,6 +1,6 @@
 # GitHub Non-Fork Repository Scanner
 
-This project is a Spring Boot application that fetches public repositories from GitHub for a given user and filters out the ones that are forks. For each non-fork repository, it returns its branches along with the latest commit SHA. To use this app, run the application and send @GetMapping request using program that can manage endpoints like Postman. By default, it should be http://localhost:8080/api/users/{username}/repos. Replace {username} with GitHub username. You should receive a list of all repositories that are non forked. To increase the rate limit and avoid 403 Forbidden errors from GitHub’s API, this application supports authenticated requests using a GitHub Personal Access Token. Paste your token in application.properties as github.token.
+This project is a Spring Boot application that fetches public repositories from GitHub for a given user and filters out the ones that are forks. For each non-fork repository, it returns its branches along with the latest commit SHA. To use this app, run the application and send @GetMapping request using program that can manage endpoints like Postman. By default, it should be http://localhost:8080/api/users/{username}/repositories. Replace {username} with GitHub username. You should receive a list of all repositories that are non forked. To increase the rate limit and avoid 403 Forbidden errors from GitHub’s API, this application supports authenticated requests using a GitHub Personal Access Token. Paste your token in application.properties as github.token.
 
 ## ✅ Features
 
@@ -20,7 +20,7 @@ This project is a Spring Boot application that fetches public repositories from 
 
 ## 📦 API Endpoint
 
-GET /api/users/{username}/repos
+GET /api/v1/users/{username}/repositories
 
 ### 🔸 Example Response:
 

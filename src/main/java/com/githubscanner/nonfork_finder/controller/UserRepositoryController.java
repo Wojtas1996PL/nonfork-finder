@@ -19,7 +19,7 @@ public class UserRepositoryController {
     private final GitHubService gitHubService;
 
     @Operation(description = "Get repositories from user")
-    @GetMapping("/{username}/repos")
+    @GetMapping("/{username}/repositories")
     public ResponseEntity<?> getRepositories(@PathVariable String username) {
         try {
             List<GitHubResponseDto> repositories = gitHubService

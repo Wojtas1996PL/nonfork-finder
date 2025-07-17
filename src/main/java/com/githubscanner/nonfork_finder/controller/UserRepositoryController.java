@@ -15,11 +15,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 @RequestMapping("/users")
 @RestController
-public class GitHubController {
+public class UserRepositoryController {
     private final GitHubService gitHubService;
 
     @Operation(description = "Get repositories from user")
-    @GetMapping("/{username}/repositories")
+    @GetMapping("/{username}/repos")
     public ResponseEntity<?> getRepositories(@PathVariable String username) {
         try {
             List<GitHubResponseDto> repositories = gitHubService

@@ -1,6 +1,6 @@
 package com.githubscanner.nonfork_finder.service;
 
-import com.githubscanner.nonfork_finder.client.GitHubClient;
+import com.githubscanner.nonfork_finder.client.GitHubApiClient;
 import com.githubscanner.nonfork_finder.dto.BranchDto;
 import com.githubscanner.nonfork_finder.dto.GitHubResponseDto;
 import com.githubscanner.nonfork_finder.model.GitHubRepositoryRaw;
@@ -12,15 +12,15 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 @Service
 class GitHubServiceImpl implements GitHubService {
-    private final GitHubClient gitHubClient;
+    private final GitHubApiClient gitHubApiClient;
 
     @Override
     public List<GitHubResponseDto> getNonForkedRepositoriesByUsername(String username) {
-        List<GitHubRepositoryRaw> rawRepositories = gitHubClient.getAllRepositories(username);
+        List<GitHubRepositoryRaw> rawRepositories = gitHubApiClient.getAllRepositories(username);
         return rawRepositories.stream()
                 .filter(repo -> !repo.isFork())
                 .map(repo -> {
-                    List<BranchDto> branchDtos = gitHubClient.getAllBranches(
+                    List<BranchDto> branchDtos = gitHubApiClient.getAllBranches(
                             repo.getOwner().getLogin(),
                             repo.getName()
                     );

@@ -22,15 +22,15 @@ import org.springframework.web.client.RestTemplate;
 
 @SpringBootTest
 @AutoConfigureMockMvc
-@Import(GitHubControllerIntegrationTest.TestConfig.class)
-class GitHubControllerIntegrationTest {
+@Import(UserRepositoryControllerTest.TestConfig.class)
+class UserRepositoryControllerTest {
 
     @Autowired
     private MockMvc mockMvc;
 
     @Test
     void returnsValidRepositoriesWithBranches() throws Exception {
-        mockMvc.perform(get("/users/user/repos"))
+        mockMvc.perform(get("/users/user/repositories"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$[0].name").value("repository2"))
                 .andExpect(jsonPath("$[0].ownerLogin").value("user"))
@@ -79,4 +79,3 @@ class GitHubControllerIntegrationTest {
         }
     }
 }
-

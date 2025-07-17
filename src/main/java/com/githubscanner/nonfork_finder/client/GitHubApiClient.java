@@ -30,7 +30,9 @@ public class GitHubApiClient {
     public List<GitHubRepositoryRaw> getAllRepositories(String username) {
         String url = baseUrl + "/users/" + username + "/repos";
         HttpHeaders headers = new HttpHeaders();
-        headers.setBearerAuth(githubToken);
+        if (githubToken != null && !githubToken.isBlank()) {
+            headers.setBearerAuth(githubToken);
+        }
         HttpEntity<Void> entity = new HttpEntity<>(headers);
         try {
             ResponseEntity<GitHubRepositoryRaw[]> response = restTemplate.exchange(
@@ -54,7 +56,9 @@ public class GitHubApiClient {
     public List<BranchDto> getAllBranches(String ownerLogin, String repositoryName) {
         String url = baseUrl + "/repos/" + ownerLogin + "/" + repositoryName + "/branches";
         HttpHeaders headers = new HttpHeaders();
-        headers.setBearerAuth(githubToken);
+        if (githubToken != null && !githubToken.isBlank()) {
+            headers.setBearerAuth(githubToken);
+        }
         HttpEntity<Void> entity = new HttpEntity<>(headers);
 
         ResponseEntity<BranchDto[]> response = restTemplate.exchange(
